@@ -1,7 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AppStackParamList } from '../types';
+import { TouchableOpacity, Text } from 'react-native';
+import { DrawerActions } from '@react-navigation/native';
 import HomeScreen from '../screens/home/HomeScreen';
+import { AppStackParamList } from '../types';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
@@ -11,8 +13,21 @@ export default function AppStack() {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{ title: 'Dashboard' }}
+        options={({ navigation }) => ({
+          title: 'Dashboard',
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ paddingHorizontal: 12 }}
+              onPress={() =>
+                navigation.getParent()?.dispatch(DrawerActions.toggleDrawer())
+              }
+            >
+              <Text style={{ fontSize: 20 }}>☰</Text>
+            </TouchableOpacity>
+          ),
+        })}
       />
+      {/* other screens... */}
     </Stack.Navigator>
   );
 }
