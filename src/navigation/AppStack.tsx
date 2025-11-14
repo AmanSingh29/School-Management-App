@@ -14,7 +14,7 @@ export default function AppStack() {
         name="Home"
         component={HomeScreen}
         options={({ navigation }) => ({
-          title: 'Dashboard',
+          title: '',
           headerLeft: () => (
             <TouchableOpacity
               style={{ paddingHorizontal: 12 }}
