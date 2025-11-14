@@ -44,7 +44,6 @@ export default function LoginScreen() {
         onChangeText={setUsername}
         kind="text"
         returnKeyType="next"
-        autoFocus
         onSubmitEditing={() => passwordRef.current?.focus()}
         errorText={errors.username}
         helperText={
