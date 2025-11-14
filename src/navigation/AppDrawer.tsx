@@ -6,7 +6,7 @@ import {
   DrawerContentScrollView,
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
-import { NavigationContainer, DrawerActions } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 

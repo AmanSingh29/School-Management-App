@@ -1,3 +1,6 @@
+import LogoutIcon from '../assets/icons/LogoutIcon.svg';
+import ProfileIcon from '../assets/icons/ProfileCircleIcon.svg';
+
 type Handlers = {
   goToProfile: () => void;
   logout: () => Promise<void> | void;
@@ -16,6 +19,7 @@ export const createDrawerOptions = ({
         goToProfile();
         closeDrawer();
       },
+      icon: ProfileIcon,
     },
     {
       title: 'Logout',
@@ -23,5 +27,6 @@ export const createDrawerOptions = ({
         await logout();
         closeDrawer();
       },
+      icon: LogoutIcon,
     },
   ] as const;

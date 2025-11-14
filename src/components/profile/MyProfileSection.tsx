@@ -12,17 +12,6 @@ const userData = {
   profilePic: '',
 };
 
-const options = [
-  {
-    title: 'My Profile',
-    onPress: () => {},
-  },
-  {
-    title: 'Logout',
-    onPress: () => {},
-  },
-];
-
 export const MyProfileSection = ({
   navigation,
 }: DrawerContentComponentProps) => {
@@ -56,18 +45,22 @@ export const MyProfileSection = ({
 
       {/* Options */}
       <View style={styles.optionList}>
-        {options.map((opt, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.optionItem}
-            onPress={() => {
-              opt.onPress();
-              navigation.closeDrawer();
-            }}
-          >
-            <Text style={styles.optionText}>{opt.title}</Text>
-          </TouchableOpacity>
-        ))}
+        {options.map((opt, index) => {
+          const Icon = opt.icon;
+          return (
+            <TouchableOpacity
+              key={index}
+              style={styles.optionItem}
+              onPress={() => {
+                opt.onPress();
+                navigation.closeDrawer();
+              }}
+            >
+              <Icon height={20} width={20} />
+              <Text style={styles.optionText}>{opt.title}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </DrawerContentScrollView>
   );
@@ -103,6 +96,9 @@ const styles = StyleSheet.create({
   },
   optionItem: {
     paddingVertical: 12,
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
   },
   optionText: {
     fontSize: 16,
