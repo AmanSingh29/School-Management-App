@@ -1,113 +1,75 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-  Pressable,
-} from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
-
-const students = [
-  {
-    id: '1',
-    name: 'Aman Singh',
-    grade: 'A+',
-    attendance: '98%',
-    avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
-  },
-  {
-    id: '2',
-    name: 'Priya Sharma',
-    grade: 'A',
-    attendance: '95%',
-    avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
-  },
-  {
-    id: '3',
-    name: 'Rahul Verma',
-    grade: 'B+',
-    attendance: '92%',
-    avatar: 'https://randomuser.me/api/portraits/men/3.jpg',
-  },
-  {
-    id: '4',
-    name: 'Sneha Patel',
-    grade: 'A',
-    attendance: '97%',
-    avatar: 'https://randomuser.me/api/portraits/women/4.jpg',
-  },
-];
+import MenuCard from '../../components/homescreen/MenuCard';
+import { E_LEARNING_MENU_ITEMS } from '../../constants';
 
 const HomeScreen = () => {
-  const { signOut } = useAuth();
+  const { user } = useAuth();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerRow}>
-        <Text style={styles.header}>
-          Welcome to Dashboard
-        </Text>
-        <Pressable onPress={signOut} style={styles.signOutBtn}>
-          <Text style={styles.signOutText}>Sign out</Text>
-        </Pressable>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      {/* Profile Section */}
+      <View style={styles.profileContainer}>
+        <Image
+          source={{
+            uri:
+              user?.profilePic ||
+              'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+          }}
+          style={styles.profilePic}
+        />
+        <Text style={styles.profileName}>{user?.name}</Text>
+        <Text style={styles.profileClass}>Class: {user?.className}</Text>
       </View>
 
-      <Text style={styles.subHeader}>Class Performance Overview</Text>
-
-      <FlatList
-        data={students}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Image source={{ uri: item.avatar }} style={styles.avatar} />
-            <View style={styles.details}>
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.meta}>Grade: {item.grade}</Text>
-              <Text style={styles.meta}>Attendance: {item.attendance}</Text>
-            </View>
-          </View>
-        )}
-        contentContainerStyle={{ paddingVertical: 10 }}
-      />
-    </View>
+      {/* White Content Section */}
+      <View style={{ backgroundColor: '#e1ece8' }}>
+        <View style={styles.whiteSection}>
+          <MenuCard title="E Learning" items={E_LEARNING_MENU_ITEMS} />
+          <MenuCard title="E Learning" items={E_LEARNING_MENU_ITEMS} />
+          <MenuCard title="E Learning" items={E_LEARNING_MENU_ITEMS} />
+          {/* Add more content to test scrolling */}
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F9FAFB', padding: 20 },
-  headerRow: {
-    flexDirection: 'row',
+  profileContainer: {
     alignItems: 'center',
-    justifyContent: 'space-between',
+    paddingVertical: 40,
+    backgroundColor: '#e1ece8',
   },
-  header: { fontSize: 18, fontWeight: '700', color: '#111827' },
-  subHeader: { fontSize: 16, color: '#6B7280', marginVertical: 12 },
-  signOutBtn: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    backgroundColor: '#E5E7EB',
-    borderRadius: 8,
-  },
-  signOutText: { fontWeight: '700' },
-  card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    padding: 12,
-    borderRadius: 12,
+
+  profilePic: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
     marginBottom: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 3,
-    elevation: 2,
+    borderWidth: 2,
+    borderColor: '#ffffff',
   },
-  avatar: { width: 50, height: 50, borderRadius: 25, marginRight: 12 },
-  details: { flex: 1 },
-  name: { fontSize: 16, fontWeight: '600', color: '#111827' },
-  meta: { fontSize: 14, color: '#6B7280' },
+
+  profileName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+
+  profileClass: {
+    fontSize: 14,
+    color: '#666',
+  },
+
+  whiteSection: {
+    backgroundColor: '#ffffff',
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    padding: 20,
+    gap: 20,
+    paddingBottom: 40,
+  },
 });
 
 export default HomeScreen;

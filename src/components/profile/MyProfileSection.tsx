@@ -6,16 +6,10 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { createDrawerOptions } from '../../constants/drawerOptions';
 import { useAuth } from '../../context/AuthContext';
 
-const userData = {
-  name: 'Aman Singh',
-  className: '12',
-  profilePic: '',
-};
-
 export const MyProfileSection = ({
   navigation,
 }: DrawerContentComponentProps) => {
-  const { signOut } = useAuth();
+  const { signOut, user: userData } = useAuth();
 
   const goToProfile = () => {
     navigation.navigate('Profile' as any);
@@ -26,6 +20,8 @@ export const MyProfileSection = ({
     logout: signOut,
     closeDrawer: () => navigation.closeDrawer(),
   });
+
+  if (!userData) return <Text>Something went wrong!</Text>;
 
   return (
     <DrawerContentScrollView contentContainerStyle={styles.drawerContainer}>

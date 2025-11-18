@@ -14,7 +14,7 @@ export default function RootNavigator() {
 
   return (
     <Drawer.Navigator
-      screenOptions={{ headerShown: false, drawerStyle: { width: 320 } }}
+      screenOptions={{ headerShown: false, drawerStyle: { width: "70%" } }}
       drawerContent={props => <MyProfileSection {...props} />}
     >
       <Drawer.Screen name="App" component={AppStack} />
