@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
 import MenuCard from '../../components/homescreen/MenuCard';
-import { E_LEARNING_MENU_ITEMS } from '../../constants';
+import { ACADEMICS_MENU_ITEMS, E_LEARNING_MENU_ITEMS } from '../../constants';
 
 const HomeScreen = () => {
   const { user } = useAuth();
@@ -27,9 +27,7 @@ const HomeScreen = () => {
       <View style={{ backgroundColor: '#e1ece8' }}>
         <View style={styles.whiteSection}>
           <MenuCard title="E Learning" items={E_LEARNING_MENU_ITEMS} />
-          <MenuCard title="E Learning" items={E_LEARNING_MENU_ITEMS} />
-          <MenuCard title="E Learning" items={E_LEARNING_MENU_ITEMS} />
-          {/* Add more content to test scrolling */}
+          <MenuCard title="Academics" items={ACADEMICS_MENU_ITEMS} />
         </View>
       </View>
     </ScrollView>
@@ -53,13 +51,13 @@ const styles = StyleSheet.create({
   },
 
   profileName: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 24,
+    fontWeight: "700",
   },
 
   profileClass: {
     fontSize: 14,
-    color: '#666',
+    color: '#413f3fff',
   },
 
   whiteSection: {
