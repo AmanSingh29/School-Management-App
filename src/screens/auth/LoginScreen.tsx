@@ -28,7 +28,7 @@ export default function LoginScreen() {
   };
 
   const onLogin = async () => {
-    if (!validate()) return;
+    // if (!validate()) return;
     // Replace with your API call
     await signIn(username);
   };

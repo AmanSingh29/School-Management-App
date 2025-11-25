@@ -21,7 +21,7 @@ const MenuCard = ({ title, items }: MenuCardProps) => {
         {items.map(({ Icon, id, text }) => (
           <TouchableOpacity style={styles.menuItem} key={id}>
             <Icon height={40} width={40} />
-            <Text style={{textAlign: "center"}} >{text}</Text>
+            <Text style={{textAlign: "center", fontSize: 12}} >{text}</Text>
           </TouchableOpacity>
         ))}
       </View>

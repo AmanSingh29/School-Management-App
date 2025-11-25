@@ -52,7 +52,7 @@ export const MyProfileSection = ({
                 navigation.closeDrawer();
               }}
             >
-              <Icon height={20} width={20} />
+              <Icon height={30} width={30} />
               <Text style={styles.optionText}>{opt.title}</Text>
             </TouchableOpacity>
           );
@@ -73,10 +73,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   profilePic: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
     marginBottom: 10,
+    borderWidth: 2,
+    borderColor: "#d9f1e8ff"
   },
   profileName: {
     fontSize: 18,
@@ -87,8 +89,7 @@ const styles = StyleSheet.create({
     color: '#666',
   },
   optionList: {
-    marginTop: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   optionItem: {
     paddingVertical: 12,
